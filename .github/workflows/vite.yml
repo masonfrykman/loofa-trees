@@ -19,6 +19,7 @@ jobs:
 
   gh-pages:
     name: Deploy to pages
+    needs: vite-build-production
     runs-on: "ubuntu-latest"
     environment:
       name: github-pages
