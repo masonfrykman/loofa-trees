@@ -15,12 +15,18 @@ jobs:
         cache-dependency-path: "package-lock.json"
     - run: npm ci
     - run: npm install
-    - run: npx vite build --outDir docs
+    - run: npx vite build
+    - uses: actions/upload-pages-artifact@v4
+      with:
+        path: dist/      
 
   gh-pages:
     name: Deploy to pages
     needs: vite-build-production
     runs-on: "ubuntu-latest"
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
