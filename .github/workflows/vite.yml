@@ -16,3 +16,13 @@ jobs:
     - run: npm ci
     - run: npm install
     - run: npx vite build --outDir docs
+
+  gh-pages:
+    name: Deploy to pages
+    runs-on: "ubuntu-latest"
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+    steps:
+    - id: deployment
+      uses: actions/deploy-pages@v4
