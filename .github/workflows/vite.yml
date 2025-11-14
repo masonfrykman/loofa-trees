@@ -16,9 +16,10 @@ jobs:
     - run: npm ci
     - run: npm install
     - run: npx vite build
+    - run: cp assets/loofa.glb dist/loofa.glb
     - uses: actions/upload-pages-artifact@v4
       with:
-        path: dist/      
+        path: dist/
 
   gh-pages:
     name: Deploy to pages
